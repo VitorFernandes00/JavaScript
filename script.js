@@ -1,59 +1,37 @@
-let listElement = document.querySelector("#app ul");
-let inputElement = document.querySelector("#app input");
-let buttonElement = document.querySelector("#app button");
+let produtos = ["Computador", "Telefone", "Mouse", "Teclado"];
+console.log(produtos);
+console.log("Essa lista possui " + produtos.length + " produtos!");
 
-let tarefas = JSON.parse(localStorage.getItem("@listaTarefas")) || [];
+produtos.splice(2,1);
 
-function renderTarefas(){
-    listElement.innerHTML = "";
-
-    tarefas.map((todo)=>{
-        let liElement = document.createElement("li");
-        let tarefaText = document.createTextNode(todo);
-
-        let linkElement = document.createElement("a");
-        linkElement.setAttribute("href", "#");
-
-        let linkText = document.createTextNode(" Excluir");
-        linkElement.appendChild(linkText);
-
-        let posicao = tarefas.indexOf(todo);
-
-        linkElement.setAttribute("onclick", `deletarTarefa(${posicao})`);
+console.log(produtos);
 
 
-        liElement.appendChild(tarefaText);
-        liElement.appendChild(linkElement);
-        listElement.appendChild(liElement);
+const findProduto = produtos.find(p => p === 'Computador');
 
-    })
+if(findProduto){
+	console.log(`Correto!! existe ${findProduto} na sua lista!`)
+}else{
+	console.log('Parece que esse produto não existe');
 }
 
-renderTarefas();
 
-function adicionarTarefas(){
-    if(inputElement.value === ''){
-        alert("Digite alguma tarefa");
-        return false;
-    }else{
-        let novaTarefa = inputElement.value;
+console.log(findProduto);
 
-        tarefas.push(novaTarefa);
-        inputElement.value = '';
+produtos.splice(1,1)
 
-        renderTarefas();
-        salvarDados();
-    }
-}
+console.log(produtos);
 
-buttonElement.onclick = adicionarTarefas;
 
-function deletarTarefa(posicao){
-    tarefas.splice(posicao, 1);
-    renderTarefas();
-    salvarDados();
-}
+const numeros = [1, 3, 5, 7, 0, 9];
+console.log("Os numeros ordenados " + numeros.sort());
 
-function salvarDados(){
-    localStorage.setItem("@listaTarefas", JSON.stringify(tarefas));
-}
+console.log("Numero removido foi: " + numeros.shift());
+
+console.log("Ordem invertida " + numeros.reverse());
+
+
+let hoje = new Date();
+console.log("A dia de hoje é: " + hoje.getDate());
+console.log("O mês de hoje é: " + hoje.getMonth());
+console.log("O ano de hoje é: " + hoje.getFullYear());
