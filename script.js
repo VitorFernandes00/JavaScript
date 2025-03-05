@@ -1,37 +1,60 @@
-let produtos = ["Computador", "Telefone", "Mouse", "Teclado"];
-console.log(produtos);
-console.log("Essa lista possui " + produtos.length + " produtos!");
+/*
+Verificador de Número Negativo, Positivo ou Zero: Escreva uma função que recebe um número como parâmetro e verifica se é negativo, positivo ou igual a zero. A função deve retornar uma string indicando o resultado.
+*/
 
-produtos.splice(2,1);
-
-console.log(produtos);
-
-
-const findProduto = produtos.find(p => p === 'Computador');
-
-if(findProduto){
-	console.log(`Correto!! existe ${findProduto} na sua lista!`)
-}else{
-	console.log('Parece que esse produto não existe');
+ function receberNumero(numero){
+    if(numero < 0){
+        return 'Negativo';
+    } else if(numero > 0){
+        return 'Positivo';
+    } else{
+        return 'Zero'
+    }
 }
 
+console.log(receberNumero(50));
+console.log(receberNumero(0));
+console.log(receberNumero(-20));
 
-console.log(findProduto);
+//--------------------------------------
 
-produtos.splice(1,1)
+/* 
+Desafio da Verificação de Elemento em um Array: Crie uma função que deve esperar receber 2 parâmetros, primeiro deve ser um array de números e o segundo parâmetro é um numero que deseja conferir se esse numero existe dentro do array e com isso você deve mostrar o resultado se esse numero que colocou existe dentro do seu array de números.
+*/
 
-console.log(produtos);
+function containsValue(array, value){
+    return array.includes(value);
+}
+
+// Exemplo de uso
+const lista = [1, 2, 3, 4, 5];
+console.log(containsValue(lista, 5));
+console.log(containsValue(lista, 8));
+//--------------------------------------
 
 
-const numeros = [1, 3, 5, 7, 0, 9];
-console.log("Os numeros ordenados " + numeros.sort());
 
-console.log("Numero removido foi: " + numeros.shift());
+/* 
+Com base no array abaixo o desafio como você pode percorrer e encontrar o produto com Preço Igual a R$20: 
+*/
 
-console.log("Ordem invertida " + numeros.reverse());
+const products = [ 
+    { name: 'Maça', price: 2.5 },
+    { name: 'Coca cola', price: 8 },
+    { name: 'Guarana', price: 5 },
+    { name: 'Chocolate', price: 20 }
+ ];
 
+ const checkProduct = products.find((product) => product.price === 20);
 
-let hoje = new Date();
-console.log("A dia de hoje é: " + hoje.getDate());
-console.log("O mês de hoje é: " + hoje.getMonth());
-console.log("O ano de hoje é: " + hoje.getFullYear());
+ console.log(checkProduct)
+
+//------------------------------
+
+/* 
+Com o mesmo array de produtos acima como você pode Filtrar Produtos com Preço Menor que R$8 e devolver todos produtos que tem o preço menor que R$8 ? 
+*/
+
+const Product = products.filter((product) => product.price <8);
+
+console.log(Product);
