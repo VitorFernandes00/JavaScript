@@ -1,60 +1,42 @@
-/*
-Verificador de Número Negativo, Positivo ou Zero: Escreva uma função que recebe um número como parâmetro e verifica se é negativo, positivo ou igual a zero. A função deve retornar uma string indicando o resultado.
-*/
+// URL: https://sujeitoprogramador.com/rn-api/?api=posts
 
- function receberNumero(numero){
-    if(numero < 0){
-        return 'Negativo';
-    } else if(numero > 0){
-        return 'Positivo';
-    } else{
-        return 'Zero'
-    }
+let listElement = document.querySelector("#app");
+
+let posts = [];
+
+function nutriApp(){
+
+    fetch("https://sujeitoprogramador.com/rn-api/?api=posts")
+    .then((r) => r.json())
+    .then((json) => {
+        posts = json;
+
+        posts.map((item) => {
+            let liElement = document.createElement("li");
+            let titleElement = document.createElement("strong");
+            let imgElement = document.createElement("img");
+            let descriptionElement = document.createElement("a");
+
+            let titleText = document.createTextNode(item.titulo);
+            titleElement.appendChild(titleText);
+            liElement.appendChild(titleElement);
+
+            imgElement.src = item.capa;
+            liElement.appendChild(imgElement);
+
+            let descriptionText = document.createTextNode(item.subtitulo); 
+            descriptionElement.appendChild(descriptionText);
+            liElement.appendChild(descriptionElement);
+
+            listElement.appendChild(liElement);
+
+        })
+
+    })
+    .catch(() => {
+        console.log("Deu algum erro!")
+    })
+
 }
 
-console.log(receberNumero(50));
-console.log(receberNumero(0));
-console.log(receberNumero(-20));
-
-//--------------------------------------
-
-/* 
-Desafio da Verificação de Elemento em um Array: Crie uma função que deve esperar receber 2 parâmetros, primeiro deve ser um array de números e o segundo parâmetro é um numero que deseja conferir se esse numero existe dentro do array e com isso você deve mostrar o resultado se esse numero que colocou existe dentro do seu array de números.
-*/
-
-function containsValue(array, value){
-    return array.includes(value);
-}
-
-// Exemplo de uso
-const lista = [1, 2, 3, 4, 5];
-console.log(containsValue(lista, 5));
-console.log(containsValue(lista, 8));
-//--------------------------------------
-
-
-
-/* 
-Com base no array abaixo o desafio como você pode percorrer e encontrar o produto com Preço Igual a R$20: 
-*/
-
-const products = [ 
-    { name: 'Maça', price: 2.5 },
-    { name: 'Coca cola', price: 8 },
-    { name: 'Guarana', price: 5 },
-    { name: 'Chocolate', price: 20 }
- ];
-
- const checkProduct = products.find((product) => product.price === 20);
-
- console.log(checkProduct)
-
-//------------------------------
-
-/* 
-Com o mesmo array de produtos acima como você pode Filtrar Produtos com Preço Menor que R$8 e devolver todos produtos que tem o preço menor que R$8 ? 
-*/
-
-const Product = products.filter((product) => product.price <8);
-
-console.log(Product);
+nutriApp();
